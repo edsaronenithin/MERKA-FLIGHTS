@@ -1,0 +1,142 @@
+<section id="cruises" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="font-playfair text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                Featured <span class="text-rose-700">CruiseVista Packages</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Choose from our carefully curated selection of luxury CruiseVista experiences,
+                each designed to create memories that will last a lifetime.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Cruise Package 1 -->
+            <div class="cruise-card rounded-2xl overflow-hidden shadow-lg">
+                <div class="relative">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ec78794e-ee95-49be-8c36-35ffbf43ce59.png"
+                        alt="Mediterranean cruise ship sailing through crystal blue waters with ancient coastal towns and dramatic cliffs in the background"
+                        class="w-full h-64 object-cover">
+                    <div
+                        class="absolute top-4 left-4 bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold">
+                        Best Seller
+                    </div>
+                    <div class="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                        7 Days
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-playfair text-2xl font-bold text-gray-900 mb-2">Mediterranean Explorer</h3>
+                    <p class="text-gray-600 mb-4">
+                        Discover ancient civilizations and stunning coastlines across Italy, Greece, and Spain.
+                    </p>
+                    <div class="flex items-center mb-4 text-sm text-gray-500">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span>Rome • Athens • Barcelona</span>
+                    </div>
+                    <div class="flex items-center mb-4 text-sm text-gray-500">
+                        <i class="fas fa-users mr-2"></i>
+                        <span>Up to 2,000 guests</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-3xl font-bold text-rose-700">Rs1,899</span>
+                            <span class="text-gray-500">/person</span>
+                        </div>
+                        <button onclick="viewCruiseDetails('mediterranean')"
+                            class="bg-rose-700 text-white px-6 py-2 rounded-full hover:bg-rose-800 transition">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cruise Package 2 -->
+            <div class="cruise-card rounded-2xl overflow-hidden shadow-lg">
+                <div class="relative">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a356250b-499e-44a5-9ae1-fc9dc2e999bd.png"
+                        alt="Caribbean cruise ship anchored near tropical island with white sandy beaches, palm trees and turquoise waters"
+                        class="w-full h-64 object-cover">
+                    <div
+                        class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        New Route
+                    </div>
+                    <div class="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                        5 Days
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-playfair text-2xl font-bold text-gray-900 mb-2">Caribbean Paradise</h3>
+                    <p class="text-gray-600 mb-4">
+                        Relax in tropical paradise with pristine beaches and crystal-clear waters.
+                    </p>
+                    <div class="flex items-center mb-4 text-sm text-gray-500">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span>Miami • Bahamas • Jamaica</span>
+                    </div>
+                    <div class="flex items-center mb-4 text-sm text-gray-500">
+                        <i class="fas fa-users mr-2"></i>
+                        <span>Up to 1,500 guests</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-3xl font-bold text-rose-700">Rs20,299</span>
+                            <span class="text-gray-500">/person</span>
+                        </div>
+                        <button onclick="viewCruiseDetails('caribbean')"
+                            class="bg-rose-700 text-white px-6 py-2 rounded-full hover:bg-rose-800 transition">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cruise Package 3 -->
+            <div class="cruise-card rounded-2xl overflow-hidden shadow-lg">
+                <div class="relative">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/30f4cf68-40a6-489b-b40e-8aef83e8d9f6.png"
+                        alt="Northern lights cruise ship sailing through Norwegian fjords with dramatic snow-capped mountains and aurora borealis in the night sky"
+                        class="w-full h-64 object-cover">
+                    <div
+                        class="absolute top-4 left-4 bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        Luxury
+                    </div>
+                    <div class="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                        10 Days
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-playfair text-2xl font-bold text-gray-900 mb-2">Northern Lights Adventure</h3>
+                    <p class="text-gray-600 mb-4">
+                        Witness the magical aurora borealis while cruising through stunning Norwegian fjords.
+                    </p>
+                    <div class="flex items-center mb-4 text-sm text-gray-500">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span>Bergen • Tromsø • Kirkenes</span>
+                    </div>
+                    <div class="flex items-center mb-4 text-sm text-gray-500">
+                        <i class="fas fa-users mr-2"></i>
+                        <span>Up to 800 guests</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-3xl font-bold text-rose-700">Rs25,999</span>
+                            <span class="text-gray-500">/person</span>
+                        </div>
+                        <button onclick="viewCruiseDetails('northern-lights')"
+                            class="bg-rose-700 text-white px-6 py-2 rounded-full hover:bg-rose-800 transition">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <button onclick="viewAllCruises()"
+                class="bg-rose-700 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-rose-800 transition">
+                View All Cruises <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </div>
+</section>

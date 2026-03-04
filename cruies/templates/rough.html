@@ -1,0 +1,913 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Merka CruiseVista-Discover the World's Beautifull Destinations</title> 
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="{% static 'styles.css' %}">  
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+
+</head>
+<body class="font-inter text-gray-900">
+    <!-- Navigation -->
+    {% comment %} <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-rose-700 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                        <i class="fas fa-anchor text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-playfair text-2xl font-bold text-rose-950">Merka</h1>
+                        <p class="text-xs text-gray-600 font-medium">CruiseVista</p>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-rose-700 font-medium">Home</a>
+                    <a href="#cruises" class="nav-link text-gray-700 hover:text-rose-700 font-medium">CruiseVista</a>
+                    <a href="#destinations" class="nav-link text-gray-700 hover:text-rose-700 font-medium">Destinations</a>
+                    <a href="#amenities" class="nav-link text-gray-700 hover:text-rose-700 font-medium">Amenities</a>
+                    <a href="#testimonials" class="nav-link text-gray-700 hover:text-rose-700 font-medium">Reviews</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-rose-700 font-medium">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button onclick="openBookingModal()" class="bg-rose-700 text-white px-6 py-2 rounded-full hover:bg-rose-800 transition-all duration-300 font-medium">
+                        Book Now
+                    </button>
+                    <button class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="lg:hidden hidden bg-white border-t">
+                <div class="py-4 space-y-4">
+                    <a href="#home" class="block text-gray-700 hover:text-rose-700 font-medium">Home</a>
+                    <a href="#cruises" class="block text-gray-700 hover:text-rose-700 font-medium">CruiseVista</a>
+                    <a href="#destinations" class="block text-gray-700 hover:text-rose-700 font-medium">Destinations</a>
+                    <a href="#amenities" class="block text-gray-700 hover:text-rose-700 font-medium">Amenities</a>
+                    <a href="#testimonials" class="block text-gray-700 hover:text-rose-700 font-medium">Reviews</a>
+                    <a href="#contact" class="block text-gray-700 hover:text-rose-700 font-medium">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav> {% endcomment %}
+
+    <!-- Hero Section -->
+    {% comment %} <section id="home" class="relative min-h-screen flex items-center justify-center">
+        <div class="absolute inset-0">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0718f1c9-0667-4e7d-aa6c-84edc94410dc.png" alt="Luxurious cruise ship sailing through pristine blue ocean waters at sunset with dramatic orange and pink sky" class="w-full h-full object-cover">
+            <div class="hero-bg absolute inset-0"></div>
+        </div>
+        
+        <div class="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+            <h1 class="font-playfair text-5xl lg:text-7xl font-bold mb-6 fade-in">
+                Discover the World's Most Beautiful
+                <span class="text-yellow-400">Destinations</span>
+            </h1>
+            <p class="text-xl lg:text-2xl mb-8 opacity-90 fade-in">
+                Experience luxury CruiseVista like never before with world-class amenities, 
+                gourmet dining, and unforgettable destinations across the globe.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+                <button onclick="openBookingModal()" class="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105">
+                    Book Your CruiseVista <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+                <button onclick="scrollToSection('cruises')" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-gray-900 transition-all duration-300">
+                    Explore CruiseVista
+                </button>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section> {% endcomment %}
+
+    <!-- Featured CruiseVista -->
+    {% comment %} <section id="skyways" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                    Featured <span class="text-rose-700">CruiseVista Packages</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Choose from our carefully curated selection of luxury CruiseVista experiences, 
+                    each designed to create memories that will last a lifetime.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cruise Package 1 -->
+                <div class="cruise-card rounded-2xl overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ec78794e-ee95-49be-8c36-35ffbf43ce59.png" alt="Mediterranean cruise ship sailing through crystal blue waters with ancient coastal towns and dramatic cliffs in the background" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 left-4 bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold">
+                            Best Seller
+                        </div>
+                        <div class="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                            7 Days
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-2xl font-bold text-gray-900 mb-2">Mediterranean Explorer</h3>
+                        <p class="text-gray-600 mb-4">
+                            Discover ancient civilizations and stunning coastlines across Italy, Greece, and Spain.
+                        </p>
+                        <div class="flex items-center mb-4 text-sm text-gray-500">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Rome • Athens • Barcelona</span>
+                        </div>
+                        <div class="flex items-center mb-4 text-sm text-gray-500">
+                            <i class="fas fa-users mr-2"></i>
+                            <span>Up to 2,000 guests</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-3xl font-bold text-rose-700">Rs1,899</span>
+                                <span class="text-gray-500">/person</span>
+                            </div>
+                            <button onclick="viewCruiseDetails('mediterranean')" class="bg-rose-700 text-white px-6 py-2 rounded-full hover:bg-rose-800 transition">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cruise Package 2 -->
+                <div class="cruise-card rounded-2xl overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a356250b-499e-44a5-9ae1-fc9dc2e999bd.png" alt="Caribbean cruise ship anchored near tropical island with white sandy beaches, palm trees and turquoise waters" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            New Route
+                        </div>
+                        <div class="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                            5 Days
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-2xl font-bold text-gray-900 mb-2">Caribbean Paradise</h3>
+                        <p class="text-gray-600 mb-4">
+                            Relax in tropical paradise with pristine beaches and crystal-clear waters.
+                        </p>
+                        <div class="flex items-center mb-4 text-sm text-gray-500">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Miami • Bahamas • Jamaica</span>
+                        </div>
+                        <div class="flex items-center mb-4 text-sm text-gray-500">
+                            <i class="fas fa-users mr-2"></i>
+                            <span>Up to 1,500 guests</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-3xl font-bold text-rose-700">Rs20,299</span>
+                                <span class="text-gray-500">/person</span>
+                            </div>
+                            <button onclick="viewCruiseDetails('caribbean')" class="bg-rose-700 text-white px-6 py-2 rounded-full hover:bg-rose-800 transition">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cruise Package 3 -->
+                <div class="cruise-card rounded-2xl overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/30f4cf68-40a6-489b-b40e-8aef83e8d9f6.png" alt="Northern lights cruise ship sailing through Norwegian fjords with dramatic snow-capped mountains and aurora borealis in the night sky" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 left-4 bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Luxury
+                        </div>
+                        <div class="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                            10 Days
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-2xl font-bold text-gray-900 mb-2">Northern Lights Adventure</h3>
+                        <p class="text-gray-600 mb-4">
+                            Witness the magical aurora borealis while cruising through stunning Norwegian fjords.
+                        </p>
+                        <div class="flex items-center mb-4 text-sm text-gray-500">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Bergen • Tromsø • Kirkenes</span>
+                        </div>
+                        <div class="flex items-center mb-4 text-sm text-gray-500">
+                            <i class="fas fa-users mr-2"></i>
+                            <span>Up to 800 guests</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-3xl font-bold text-rose-700">Rs25,999</span>
+                                <span class="text-gray-500">/person</span>
+                            </div>
+                            <button onclick="viewCruiseDetails('northern-lights')" class="bg-rose-700 text-white px-6 py-2 rounded-full hover:bg-rose-800 transition">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button onclick="viewAllCruises()" class="bg-rose-700 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-rose-800 transition">
+                    View All Cruises <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section> {% endcomment %}
+
+    <!-- Destinations -->
+    {% comment %} <section id="destinations" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                    Popular <span class="text-rose-700">Destinations</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Explore breathtaking destinations around the world, from tropical paradises 
+                    to historic European ports and exotic Asian cities.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Destination 1 -->
+                <div class="destination-card rounded-2xl overflow-hidden shadow-lg h-80">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/970a24e1-faa7-45b1-a457-5adf5355a89b.png" alt="Santorini Greece with iconic white and blue buildings overlooking the Aegean Sea at golden hour" class="w-full h-full object-cover">
+                    <div class="destination-overlay flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="font-playfair text-2xl font-bold mb-2">Santorini</h3>
+                            <p class="text-sm opacity-90">Greece • Mediterranean</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destination 2 -->
+                <div class="destination-card rounded-2xl overflow-hidden shadow-lg h-80">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c212d31c-e005-4136-ba33-7af610be4807.png" alt="Dubai skyline with modern skyscrapers and luxury marina at sunset with cruise ship in foreground" class="w-full h-full object-cover">
+                    <div class="destination-overlay flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="font-playfair text-2xl font-bold mb-2">Dubai</h3>
+                            <p class="text-sm opacity-90">UAE • Arabian Gulf</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destination 3 -->
+                <div class="destination-card rounded-2xl overflow-hidden shadow-lg h-80">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a9788216-cd07-4eb2-aea8-702895bfb25f.png" alt="Maldives overwater bungalows with crystal clear turquoise lagoon and coral reefs visible underwater" class="w-full h-full object-cover">
+                    <div class="destination-overlay flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="font-playfair text-2xl font-bold mb-2">Maldives</h3>
+                            <p class="text-sm opacity-90">Indian Ocean</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destination 4 -->
+                <div class="destination-card rounded-2xl overflow-hidden shadow-lg h-80">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ce6c2c19-535b-4e84-a0b8-71098cef16d0.png" alt="Norwegian fjord with dramatic waterfalls, steep cliffs, and cruise ship sailing through misty waters" class="w-full h-full object-cover">
+                    <div class="destination-overlay flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="font-playfair text-2xl font-bold mb-2">Norwegian Fjords</h3>
+                            <p class="text-sm opacity-90">Norway • Arctic Circle</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> {% endcomment %}
+
+    <!-- Amenities -->
+    {% comment %} <section id="amenities" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                    World-Class <span class="text-rose-700">Amenities</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Enjoy luxury amenities and facilities designed to make your cruise experience 
+                    unforgettable, from gourmet dining to entertainment and relaxation.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Amenity 1 -->
+                <div class="text-center group">
+                    <div class="amenity-icon w-20 h-20 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl font-bold text-gray-900 mb-2">Gourmet Dining</h3>
+                    <p class="text-gray-600">
+                        Multiple specialty restaurants featuring world-class cuisine from renowned chefs.
+                    </p>
+                </div>
+                
+                <!-- Amenity 2 -->
+                <div class="text-center group">
+                    <div class="amenity-icon w-20 h-20 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
+                        <i class="fas fa-swimming-pool"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl font-bold text-gray-900 mb-2">Luxury Pools</h3>
+                    <p class="text-gray-600">
+                        Multiple pools and hot tubs with stunning ocean views and poolside service.
+                    </p>
+                </div>
+                
+                <!-- Amenity 3 -->
+                <div class="text-center group">
+                    <div class="amenity-icon w-20 h-20 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl font-bold text-gray-900 mb-2">Spa & Wellness</h3>
+                    <p class="text-gray-600">
+                        Full-service spa with massages, treatments, and state-of-the-art fitness center.
+                    </p>
+                </div>
+                
+                <!-- Amenity 4 -->
+                <div class="text-center group">
+                    <div class="amenity-icon w-20 h-20 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl font-bold text-gray-900 mb-2">Entertainment</h3>
+                    <p class="text-gray-600">
+                        Broadway-style shows, live music, comedy acts, and nightly entertainment.
+                    </p>
+                </div>
+                
+                <!-- Amenity 5 -->
+                <div class="text-center group">
+                    <div class="amenity-icon w-20 h-20 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl font-bold text-gray-900 mb-2">Activities</h3>
+                    <p class="text-gray-600">
+                        Gaming areas, sports courts, rock climbing, and adventure activities for all ages.
+                    </p>
+                </div>
+                
+                <!-- Amenity 6 -->
+                <div class="text-center group">
+                    <div class="amenity-icon w-20 h-20 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl font-bold text-gray-900 mb-2">Kids Club</h3>
+                    <p class="text-gray-600">
+                        Supervised kids' programs and teen activities with age-appropriate entertainment.
+                    </p>
+                </div>
+                
+                <!-- Amenity 7 -->
+                <div class="text-center group">
+                    <div class="amenity-icon w-20 h-20 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl font-bold text-gray-900 mb-2">Shopping</h3>
+                    <p class="text-gray-600">
+                        Duty-free shopping with designer brands, jewelry, and local souvenirs.
+                    </p>
+                </div>
+                
+                <!-- Amenity 8 -->
+                <div class="text-center group">
+                    <div class="amenity-icon w-20 h-20 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl font-bold text-gray-900 mb-2">Wi-Fi</h3>
+                    <p class="text-gray-600">
+                        High-speed internet connectivity throughout the ship to stay connected.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section> {% endcomment %}
+
+    <!-- Testimonials -->
+    {% comment %} <section id="testimonials" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                    What Our Guests <span class="text-rose-700">Say</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Read testimonials from thousands of satisfied guests who have experienced 
+                    the magic of Merka Cruises.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-xl">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "The Mediterranean cruise exceeded all our expectations. The food was incredible, 
+                        the entertainment was world-class, and the destinations were breathtaking. 
+                        We can't wait to book our next cruise with Cordelia!"
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f7c9559f-fd5c-437e-a9ee-584d51014910.png" alt="Happy cruise guest Merin Zephi, a young woman with black hair smiling warmly" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Merin Zephi</h4>
+                            <p class="text-sm text-gray-500">Mediterranean Explorer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-xl">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "Family vacation of a lifetime! The kids loved the activities and pools, 
+                        while we enjoyed the spa and fine dining. Perfect balance for everyone. 
+                        Highly recommend Cordelia Cruises!"
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9fdd48e9-528d-493a-9ff9-732df8a7b4c0.png" alt="Satisfied cruise guest Joy, an Asian man in his twenty with a bright smile" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Joy</h4>
+                            <p class="text-sm text-gray-500">Caribbean Paradise</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-xl">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "Witnessing the Northern Lights from the ship was absolutely magical. 
+                        The staff was incredibly attentive, and every detail was perfect. 
+                        This cruise will remain in our hearts forever."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/90e51c94-8548-494a-83da-b09f3cbba9cd.png" alt="Delighted cruise guest Karthika, an young woman with gray hair and a joyful expression" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Karthika</h4>
+                            <p class="text-sm text-gray-500">Northern Lights Adventure</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> {% endcomment %}
+
+    <!-- Booking CTA Section -->
+    {% comment %} <section class="py-20 parallax relative">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4c6bf8c4-741c-48fa-8721-1bda46a69add.png" alt="Cruise ship deck at sunset with elegant dining setup and ocean views stretching to the horizon" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="relative z-10 container mx-auto px-4 text-center text-white">
+            <h2 class="font-playfair text-4xl lg:text-5xl font-bold mb-6">
+                Ready for Your Dream Cruise?
+            </h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                Book now and save up to 30% on select sailings. Limited time offer for early bird bookings.
+            </p>
+            <button onclick="openBookingModal()" class="bg-yellow-400 text-gray-900 px-10 py-4 rounded-full text-xl font-bold hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105">
+                Book Your Cruise Today <i class="fas fa-anchor ml-2 wave"></i>
+            </button>
+        </div>
+    </section> {% endcomment %}
+
+    <!-- Contact Section -->
+    {% comment %} <section id="contact" class="py-20 bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="font-playfair text-4xl font-bold mb-6">Get in Touch</h2>
+                    <p class="text-xl text-gray-300 mb-8">
+                        Have questions about our cruises? Our expert travel consultants are here to help 
+                        you plan the perfect voyage.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <div class="bg-rose-700 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Phone</h3>
+                                <p class="text-gray-300">+1 (800) 123-CRUISE</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-rose-700 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Email</h3>
+                                <p class="text-gray-300">bookings@merkacruises.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-rose-700 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Hours</h3>
+                                <p class="text-gray-300">24/7 Customer Support</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="font-semibold mb-4">Follow Us</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-rose-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-rose-800 transition">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="bg-rose-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-rose-800 transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="bg-rose-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-rose-800 transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="bg-rose-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-rose-800 transition">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <form class="space-y-6" method="post" action="{% url 'contact' %}">
+                        {% csrf_token %}
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Name</label>
+                            <input type="text" name="name" required class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-rose-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-rose-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Phone</label>
+                            <input type="tel" name="mobile" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-rose-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Message</label>
+                            <textarea rows="4" name="message" required class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-rose-500 transition"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-rose-700 text-white py-3 rounded-lg font-semibold hover:bg-rose-800 transition">
+                            Send Message
+                        </button>
+                    </form>
+                   
+                </div>
+            </div>
+        </div>
+    </section> {% endcomment %}
+
+    <!-- Footer -->
+    {% comment %} <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="bg-rose-700 text-white w-10 h-10 rounded-full flex items-center justify-center">
+                            <i class="fas fa-anchor"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-playfair text-xl font-bold">Merka</h3>
+                            <p class="text-xs text-gray-400">CRUISES</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Experience the world's most beautiful destinations with luxury cruising at its finest.
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#cruises" class="text-gray-400 hover:text-white transition">Cruises</a></li>
+                        <li><a href="#destinations" class="text-gray-400 hover:text-white transition">Destinations</a></li>
+                        <li><a href="#amenities" class="text-gray-400 hover:text-white transition">Amenities</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition">Reviews</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Support</h3>
+                    ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Travel Documents</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Cancellation Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Subscribe for exclusive deals and cruise updates.</p>
+                    <form class="flex" onsubmit="subscribeNewsletter(event)">
+                        <input type="email" placeholder="Enter your email" class="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-l-lg focus:outline-none focus:border-rose-500">
+                        <button type="submit" class="bg-rose-700 px-4 py-2 rounded-r-lg hover:bg-rose-800 transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2024 Merka Cruises. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer> {% endcomment %}
+
+    <!-- Booking Modal -->
+    {% comment %} <div id="bookingModal" class="fixed inset-0 booking-modal hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-8 w-full max-w-2xl mx-4 max-h-screen overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-playfair text-3xl font-bold text-gray-900">Book Your Cruise</h3>
+                <button onclick="closeBookingModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form class="space-y-6" method="post" action="{% url 'booking' %}">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                        <input type="text" name="fname" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                        <input type="text" name="lname" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-500 transition">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Adress(Google Account):</label>
+                    <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-500 transition">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number(10 digits only):</label>
+                    <input type="tel" name="mobile" pattern="^\d{10}$" maxlength="10" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-500 transition">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Cruise</label>
+                    <select name = "cruise" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-500 transition">
+                        <option value="">Choose a cruise package</option>
+                        <option value="mediterranean">Mediterranean Explorer - Rs10,899</option>
+                        <option value="caribbean">Caribbean Paradise - RS10,299</option>
+                        <option value="northern-lights">Northern Lights Adventure - RS20,999</option>
+                    </select>
+                    
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Guests</label>
+                        <select name="nguest" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-500 transition">
+                            <option value="">Select guests</option>
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5+">5+ Guests</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Cabin Type</label>
+                        <select name="cabin" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-500 transition">
+                            <option value="">Select cabin</option>
+                            <option value="interior">Interior Cabin</option>
+                            <option value="oceanview">Ocean View</option>
+                            <option value="balcony">Balcony Cabin</option>
+                            <option value="suite">Luxury Suite</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Special Requests</label>
+                    <textarea name= "message" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-500 transition" placeholder="Any special requests or dietary requirements..."></textarea>
+                </div>
+                
+                <div class="flex justify-end space-x-4">
+                    <button type="button" onclick="closeBookingModal()" class="px-6 py-3 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-6 py-3 bg-rose-700 text-white rounded-lg hover:bg-rose-800 transition font-semibold">
+                        Submit Booking Request
+                    </button>
+                </div>
+            </form>
+            {% if success %}
+                <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Message Sent!',
+                    text: 'Thank you \"{{email}}\" for contacting us. We will get back to you soon.',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
+                </script>
+            {% endif %}
+            {% if not success %}
+                <script>
+                Swal.fire({
+                icon: 'error',
+                title: 'Submission Failed!',
+                text: 'Mail ID \"{{email}}\" Already Exists',
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'OK'
+                });
+                </script>
+          {% endif %}
+        </div>
+    </div> {% endcomment %}
+
+    <script>
+        // Smooth scrolling for navigation links
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Navigation transparency on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-white/95');
+                navbar.classList.remove('bg-white/90');
+            } else {
+                navbar.classList.add('bg-white/90');
+                navbar.classList.remove('bg-white/95');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Booking modal functions
+        function openBookingModal() {
+            document.getElementById('bookingModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Form submission handlers
+        function submitBooking(event) {
+            event.preventDefault();
+            alert('Thank you for your booking request! Our travel consultants will contact you within 24 hours to confirm your reservation.');
+            closeBookingModal();
+        }
+
+        function submitContactForm(event) {
+            event.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            event.target.reset();
+        }
+
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            alert('Thank you for subscribing to our newsletter!');
+            event.target.reset();
+        }
+
+        // Cruise detail functions
+        function viewCruiseDetails(cruiseType) {
+            const cruiseDetails = {
+                'mediterranean': {
+                    name: 'Mediterranean Explorer',
+                    description: 'Explore ancient civilizations and stunning coastlines across Italy, Greece, and Spain.',
+                    itinerary: 'Rome → Naples → Athens → Mykonos → Barcelona',
+                    duration: '7 Days',
+                    price: 'RS10,899'
+                },
+                'caribbean': {
+                    name: 'Caribbean Paradise',
+                    description: 'Relax in tropical paradise with pristine beaches and crystal-clear waters.',
+                    itinerary: 'Miami → Nassau → Cozumel → Jamaica → Miami',
+                    duration: '5 Days',
+                    price: 'RS10,299'
+                },
+                'northern-lights': {
+                    name: 'Northern Lights Adventure',
+                    description: 'Witness the magical aurora borealis while cruising through stunning Norwegian fjords.',
+                    itinerary: 'Bergen → Geiranger → Tromsø → Kirkenes → Bergen',
+                    duration: '10 Days',
+                    price: 'RS20,999'
+                }
+            };
+
+            const cruise = cruiseDetails[cruiseType];
+            alert(`${cruise.name}\n\n${cruise.description}\n\nItinerary: ${cruise.itinerary}\nDuration: ${cruise.duration}\nPrice: ${cruise.price} per person\n\nClick "Book Now" to reserve your spot!`);
+        }
+
+        function viewAllCruises() {
+            alert('Redirecting to our full cruise catalog with over 50 destinations worldwide!');
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.cruise-card, .destination-card, .testimonial-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('bookingModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBookingModal();
+            }
+        });
+
+        // Initialize animations on page load
+        window.addEventListener('load', function() {
+            const heroElements = document.querySelectorAll('.fade-in');
+            heroElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

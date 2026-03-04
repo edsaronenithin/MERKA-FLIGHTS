@@ -1,0 +1,34 @@
+{% load static %}
+<section id="home" class="relative min-h-screen flex items-center justify-center">
+    <div class="absolute inset-0">
+        <img src="{% static 'images/image.png' %}"
+            alt="Luxurious cruise ship sailing through pristine blue ocean waters at sunset with dramatic orange and pink sky"
+            class="w-screen h-screen object-cover">
+        <div class="hero-bg absolute inset-0"></div>
+    </div>
+
+    <div class="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+        <h1 class="font-playfair text-5xl lg:text-7xl font-bold mb-6 fade-in">
+            Discover the World's Most Beautiful
+            <span class="text-yellow-400">Destinations</span>
+        </h1>
+        <p class="text-xl lg:text-2xl mb-8 opacity-90 fade-in">
+            Experience luxury CruiseVista like never before with world-class amenities,
+            gourmet dining, and unforgettable destinations across the globe.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+            <button onclick="openBookingModal()"
+                class="bg-yellow-400 text-gray-900 hover:text-white hover:bg-rose-900 px-8 py-4 rounded-full font-semibold text-lg  transition-all duration-300 transform hover:scale-105">
+                Book Your CruiseVista <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+            <button onclick="scrollToSection('cruises')"
+                class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-rose-900 transition-all duration-300">
+                Explore CruiseVista
+            </button>
+        </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+        <i class="fas fa-chevron-down text-2xl"></i>
+    </div>
+</section>

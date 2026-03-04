@@ -1,0 +1,58 @@
+{% load static %}
+<nav class="fixed w-full z-50 bg-transparent transition-all duration-300" id="navbar">
+    <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center py-1">
+            <div class="flex items-center space-x-3">
+                <div class=" text-white w-15 h-15 rounded-full flex items-center justify-center">
+                    <img src="{% static 'images/merkaLogoTrans.png' %}" alt="Logo" class="w-20 h-20 object-cover">
+                </div>
+                <div>
+                    <h1 class="nav-text-toggle font-playfair text-2xl font-bold text-white transition-colors">Merka</h1>
+                    <p class="nav-text-toggle text-xs text-white font-medium transition-colors">SkyWays</p>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex space-x-8">
+                <a href="#home" class="nav-link text-white hover:text-rose-700 font-medium transition-colors">Home</a>
+                <a href="#cruises"
+                    class="nav-link text-white hover:text-rose-700 font-medium transition-colors">CruiseVista</a>
+                <a href="#destinations"
+                    class="nav-link text-white hover:text-rose-700 font-medium transition-colors">Destinations</a>
+                <a href="#amenities"
+                    class="nav-link text-white hover:text-rose-700 font-medium transition-colors">Amenities</a>
+                <a href="#testimonials"
+                    class="nav-link text-white hover:text-rose-700 font-medium transition-colors">Reviews</a>
+                <a href="#contact"
+                    class="nav-link text-white hover:text-rose-700 font-medium transition-colors">Contact</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <a href="{% url 'login' %}"
+                    class="nav-text-toggle hidden lg:inline-block text-white hover:text-rose-700 font-medium transition-colors">
+                    Log In
+                </a>
+                <button onclick="openBookingModal()"
+                    class="bg-rose-700 text-white px-6 py-2 rounded-full hover:bg-rose-800 transition-all duration-300 font-medium">
+                    Book Now
+                </button>
+                <button class="nav-text-toggle lg:hidden text-white transition-colors" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="lg:hidden hidden bg-white border-t">
+            <div class="py-4 space-y-4 px-4">
+                <a href="#home" class="block text-gray-700 hover:text-rose-700 font-medium">Home</a>
+                <a href="#cruises" class="block text-gray-700 hover:text-rose-700 font-medium">CruiseVista</a>
+                <a href="#destinations" class="block text-gray-700 hover:text-rose-700 font-medium">Destinations</a>
+                <a href="#amenities" class="block text-gray-700 hover:text-rose-700 font-medium">Amenities</a>
+                <a href="#testimonials" class="block text-gray-700 hover:text-rose-700 font-medium">Reviews</a>
+                <a href="#contact" class="block text-gray-700 hover:text-rose-700 font-medium">Contact</a>
+                <hr class="border-gray-200">
+                <a href="{% url 'login' %}" class="block text-rose-700 font-bold hover:text-rose-800">Log In</a>
+            </div>
+        </div>
+    </div>
+</nav>
