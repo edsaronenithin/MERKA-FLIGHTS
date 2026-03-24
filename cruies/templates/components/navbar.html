@@ -13,16 +13,15 @@
             </div>
 
             <div class="hidden lg:flex space-x-8">
-                <a href="#home" class="nav-link text-white hover:text-rose-700 font-medium transition-colors">Home</a>
-                <a href="#cruises"
-                    class="nav-link text-white hover:text-rose-700 font-medium transition-colors">CruiseVista</a>
-                <a href="#destinations"
-                    class="nav-link text-white hover:text-rose-700 font-medium transition-colors">Destinations</a>
-                <a href="#amenities"
-                    class="nav-link text-white hover:text-rose-700 font-medium transition-colors">Amenities</a>
-                <a href="#testimonials"
+                <a href="{% url 'index' %}#home"
+                    class="nav-link text-white hover:text-rose-700 font-medium transition-colors">Home</a>
+                <a href="{% url 'index' %}#flights"
+                    class="nav-link text-white hover:text-rose-700 font-medium transition-colors">FlightDeals</a>
+                <a href="{% url 'index' %}#benefits"
+                    class="nav-link text-white hover:text-rose-700 font-medium transition-colors">Benefits</a>
+                <a href="{% url 'index' %}#testimonials"
                     class="nav-link text-white hover:text-rose-700 font-medium transition-colors">Reviews</a>
-                <a href="#contact"
+                <a href="{% url 'index' %}#contact"
                     class="nav-link text-white hover:text-rose-700 font-medium transition-colors">Contact</a>
             </div>
 
@@ -31,10 +30,10 @@
                     class="nav-text-toggle hidden lg:inline-block text-white hover:text-rose-700 font-medium transition-colors">
                     Log In
                 </a>
-                <button onclick="openBookingModal()"
-                    class="bg-rose-700 text-white px-6 py-2 rounded-full hover:bg-rose-800 transition-all duration-300 font-medium">
+                <a href="{% url 'flights' %}"
+                    class="bg-rose-700 text-white px-6 py-2 rounded-full hover:bg-rose-800 transition-all duration-300 font-medium inline-block text-center">
                     Book Now
-                </button>
+                </a>
                 <button class="nav-text-toggle lg:hidden text-white transition-colors" onclick="toggleMobileMenu()">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
@@ -44,12 +43,15 @@
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="lg:hidden hidden bg-white border-t">
             <div class="py-4 space-y-4 px-4">
-                <a href="#home" class="block text-gray-700 hover:text-rose-700 font-medium">Home</a>
-                <a href="#cruises" class="block text-gray-700 hover:text-rose-700 font-medium">CruiseVista</a>
-                <a href="#destinations" class="block text-gray-700 hover:text-rose-700 font-medium">Destinations</a>
-                <a href="#amenities" class="block text-gray-700 hover:text-rose-700 font-medium">Amenities</a>
-                <a href="#testimonials" class="block text-gray-700 hover:text-rose-700 font-medium">Reviews</a>
-                <a href="#contact" class="block text-gray-700 hover:text-rose-700 font-medium">Contact</a>
+                <a href="{% url 'index' %}#home" class="block text-gray-700 hover:text-rose-700 font-medium">Home</a>
+                <a href="{% url 'index' %}#flights"
+                    class="block text-gray-700 hover:text-rose-700 font-medium">FlightDeals</a>
+                <a href="{% url 'index' %}#benefits"
+                    class="block text-gray-700 hover:text-rose-700 font-medium">Benefits</a>
+                <a href="{% url 'index' %}#testimonials"
+                    class="block text-gray-700 hover:text-rose-700 font-medium">Reviews</a>
+                <a href="{% url 'index' %}#contact"
+                    class="block text-gray-700 hover:text-rose-700 font-medium">Contact</a>
                 <hr class="border-gray-200">
                 <a href="{% url 'login' %}" class="block text-rose-700 font-bold hover:text-rose-800">Log In</a>
             </div>

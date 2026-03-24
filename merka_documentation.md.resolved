@@ -1,0 +1,80 @@
+# Merka SkyWays/Cruises - Full Stack Project Documentation
+
+This documentation provides an overview of the **Merka** application—a comprehensive Django-based web application tailored for booking travel (including flights & cruises).
+
+---
+
+## 🏗️ Architecture & Stack Overview
+
+The application follows the classic **MVT (Model-View-Template)** architecture provided by the Django framework.
+
+### **Front-End Technologies**
+- **HTML5**: For structuring the templates (Django Templates).
+- **Tailwind CSS**: A utility-first CSS framework used extensively for styling, grid layouts, component designing, and responsive behavior.
+- **FontAwesome**: Used for incorporating vector icons (e.g., `fas fa-plane`, social media icons).
+- **Google Fonts**: Custom typography, specifically the "Playfair Display" font for headings to give a premium look (`font-playfair`).
+- **JavaScript (Vanilla)**: Handles basic DOM interactions, dynamic modals (e.g., Flight Booking Modal), and minor interactive elements on the frontend.
+
+### **Back-End Technologies**
+- **Language**: Python (v3)
+- **Framework**: Django (v5.2.1)
+- **Database**: MySQL Server
+  - Configured via Django's `django.db.backends.mysql` engine.
+- **SMTP/Email**: Gmail STMP server (`smtp.gmail.com:587` with TLS) used for triggering automated emails through `django.core.mail`.
+
+---
+
+## 🗄️ Database Models ([cruies/models.py](file:///d:/Django/myproject/merka/cruies/models.py))
+
+The Django ORM is used to interact with the MySQL database. The primary models include:
+
+1. **[Contact](file:///d:/Django/myproject/merka/cruies/models.py#5-15)**: 
+   - Stores user inquiries from the contact form (Name, Email, Mobile, Message, and Timestamp).
+2. **[Flight](file:///d:/Django/myproject/merka/cruies/models.py#16-30)**: 
+   - Stores flight availability information (Airline, Flight Number, Origin, Destination, Departure/Arrival Times, Duration, Stops, and Price).
+3. **[FlightBooking](file:///d:/Django/myproject/merka/cruies/models.py#31-54)**:
+   - Manages user flight reservations. Stores passenger details, travel details (dates, origins, destinations, cabin class), and special options (seat preferences, requests).
+4. **`User` (Django Default Auth Model)**:
+   - Used for the authentication flow, maintaining registered customers and admin staff.
+
+---
+
+## 🛣️ Routing & Views Overview ([cruies/urls.py](file:///d:/Django/myproject/merka/cruies/urls.py) & [views.py](file:///d:/Django/myproject/merka/cruies/views.py))
+
+- **`/` (Home/Index)** -> `views.index`: Serves the homepage landing view.
+- **`/contact/`** -> `views.contact`: Handles POST submissions for user inquiries. Saves the form to the database and dispatches two emails: an automated confirmation to the user and an alert to the admin.
+- **`/signup/`** -> `views.user_signup`: Handles new user registration, saving hashed passwords to the database via Django Auth.
+- **`/login/`** -> `views.user_login`: Handles user authentication sessions. Routes valid superusers/staff to the Django Admin panel and normal users to the homepage.
+- **`/flights/`** -> `views.flights`: Search page where users query flights by origin and destination. 
+  - **Mock API Mechanism**: If flights matching the search do not exist in the database, the [mock_flight_api](file:///d:/Django/myproject/merka/cruies/views.py#138-179) generates random flights across several airlines, populates the database dynamically, and returns the sorted mock results.
+- **`/book-flight/`** -> `views.book_flight`: Handles the final submission of the booking modal, saving a [FlightBooking](file:///d:/Django/myproject/merka/cruies/models.py#31-54) instance and simultaneously triggering an email receipt to the user and a notification to the admin.
+
+---
+
+## 🛡️ Security Features
+
+The application incorporates robust security practices provided natively by Django's framework middlewares, ORM, and Auth validators:
+
+1. **SQL Injection Protection**:
+   - By heavily relying on Django ORM (`Flight.objects.filter()`, `User.objects.create_user()`), query parameters are automatically sanitized, preventing SQL Injection vulnerabilities.
+2. **Cross-Site Request Forgery (CSRF) Protection**:
+   - Implemented via `CsrfViewMiddleware`. All POST actions (login, signup, contact, book flight) utilize the `{% csrf_token %}` template tag to prevent malicious cross-site POST submissions.
+3. **Cross-Site Scripting (XSS) Protection**:
+   - Django templates inherently escape output variables.
+4. **Clickjacking Protection**:
+   - Enabled via `XFrameOptionsMiddleware`. Prevents the site from being rendered inside a hidden iframe on external sites.
+5. **Secure Authentication & Session Management**:
+   - Leverages `AuthenticationMiddleware` & `SessionMiddleware` to track safe login states.
+6. **Password Policies & Validators**:
+   - Out-of-the-box Django password safeguards are enabled ([settings.py](file:///d:/Django/myproject/merka/merka/settings.py)):
+     - `UserAttributeSimilarityValidator`: Prevents passwords that resemble user attributes natively.
+     - `MinimumLengthValidator`: Enforces a secure password length constraint.
+     - `CommonPasswordValidator`: Checks passwords against a list of commonly cracked passwords.
+     - `NumericPasswordValidator`: Prevents entirely numeric passwords.
+
+---
+
+## ⚡ Email Integration & Notifications
+The application comes with an automated event-driven notification system leveraging Gmail SMTP. When standard events occur—such as filling out the **Contact Form** or completing a **Flight Booking**—the server executes dual operations:
+- A beautifully formatted email is sent to the site Administrator alerting them of lead capturing or a new sale.
+- An intelligent generic response template is emailed instantly back to the customer's provided email address.

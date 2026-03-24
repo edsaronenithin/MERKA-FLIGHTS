@@ -5,14 +5,14 @@
     <div class="absolute inset-0 bg-black/60"></div>
     <div class="relative z-10 container mx-auto px-4 text-center text-white">
         <h2 class="font-playfair text-4xl lg:text-5xl font-bold mb-6">
-            Ready for Your Dream Cruise?
+            Ready for Your Dream Journey?
         </h2>
         <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-            Book now and save up to 30% on select sailings. Limited time offer for early bird bookings.
+            Book now and save up to 30% on Overseas flights. Limited time offer for early bird bookings.
         </p>
-        <button onclick="openBookingModal()"
-            class="bg-yellow-400 text-gray-900 px-10 py-4 rounded-full text-xl font-bold hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105">
-            Book Your Cruise Today <i class="fas fa-anchor ml-2 wave"></i>
-        </button>
+        <a href="{% url 'flights' %}"
+            class="bg-yellow-400 text-gray-900 px-10 py-4 rounded-full text-xl font-bold hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 inline-block text-center">
+            Book Your Flight Today <i class="fas fa-plane ml-2 wave"></i>
+        </a>
     </div>
 </section>

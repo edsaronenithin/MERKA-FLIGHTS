@@ -1,14 +1,17 @@
 from django.shortcuts import render, redirect
-from .forms import contactForm, bookingForm
-from .models import Contact, Booking
+from .forms import contactForm
+from .models import Contact, Flight, FlightBooking
+from django.utils import timezone
+import datetime
+import random
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
+
 def index(request):
     form = contactForm()
     return render(request, 'index.html', {'form': form})
-
 
 def contact(request):
     if request.method == 'POST':
@@ -97,87 +100,6 @@ The Merka Cruises Customer Care Team
 
     return render(request, 'index.html', {'form': form})
 
-
-
-def booking(request):
-    if request.method == 'POST':
-        form1 = bookingForm(request.POST)
-        if form1.is_valid():
-            email = form1.cleaned_data.get('email', '')
-            fname = form1.cleaned_data.get('fname', '')
-            lname = form1.cleaned_data.get('lname', '')
-            cruise = form1.cleaned_data.get('cruise', 'N/A')
-            mobile = form1.cleaned_data.get('mobile', 'N/A')
-            nguest = form1.cleaned_data.get('nguest', 'N/A')
-            cabin = form1.cleaned_data.get('cabin', 'N/A')
-            message = form1.cleaned_data.get('message', 'None')
-
-            form1.save()
-
-            # Admin email
-            send_mail(
-                f"New Booking Request: {fname} {lname}",
-                f"""
-Dear Admin,
-
-A new cruise booking request has been submitted. Please find the reservation details below:
-
-Customer Information:
---------------------------------------------------
-Name:    {fname} {lname}
-Email:   {email}
-Phone:   {mobile}
-
-Reservation Details:
---------------------------------------------------
-Cruise:  {cruise}
-Guests:  {nguest}
-Cabin:   {cabin}
-
-Additional Message:
---------------------------------------------------
-{message}
-
-Kindly review this request and contact the customer accordingly.
-
-Best Regards,
-Merka Cruises Automated System
-                """,
-                settings.EMAIL_HOST_USER,
-                ["merkaflight@gmail.com"]
-            )
-
-            # User confirmation email
-            send_mail(
-                "Your Merka Cruises Booking Request 🚢",
-                f"""
-Dear {fname} {lname},
-
-Warm greetings from Merka Cruises!
-
-Thank you for choosing us for your next adventure. Your booking request for the {cruise} cruise has been successfully received. 
-
-Our reservation team is currently reviewing your details and will contact you shortly to confirm your booking and provide further information.
-
-If you have any immediate questions, please feel free to reply directly to this email.
-
-Warm Regards,
-The Merka Cruises Reservation Team
-                """,
-                settings.EMAIL_HOST_USER,
-                [email]
-            )
-
-            return render(request, 'index.html', {
-                'form1': bookingForm(),
-                'success': True,
-                'name': fname
-            })
-    else:
-        form1 = bookingForm()
-
-    return render(request, 'index.html', {'form1': form1})
-
 def user_login(request):
     if request.method == 'POST':
         u = request.POST.get('username')
@@ -186,6 +108,8 @@ def user_login(request):
         user = authenticate(request, username=u, password=p)
         if user is not None:
             auth_login(request, user)
+            if user.is_staff or user.is_superuser:
+                return redirect('/admin/')
             return redirect('index') # redirect to homepage on successful login
         else:
             return render(request, 'components/login.html', {'error': 'Invalid username or password.'})
@@ -210,3 +134,184 @@ def user_signup(request):
         return redirect('login') 
         
     return render(request, 'components/signup.html')
+
+def mock_flight_api(origin, destination, date_str):
+    airlines = ['Emirates', 'Singapore Airlines', 'Air India', 'Thai Airways', 'Qatar Airways', 'Lufthansa', 'British Airways']
+    
+    try:
+        dep_date = datetime.datetime.strptime(date_str, '%Y-%m-%d').date()
+    except Exception:
+        dep_date = timezone.now().date()
+        
+    results = []
+    
+    for i in range(random.randint(3, 8)):
+        airline = random.choice(airlines)
+        flight_num = f"{airline[:2].upper()}{random.randint(100, 999)}"
+        
+        hour = random.randint(0, 23)
+        minute = random.choice([0, 15, 30, 45])
+        departure_time = timezone.make_aware(datetime.datetime.combine(dep_date, datetime.time(hour, minute)))
+        
+        dur_hours = random.randint(2, 12)
+        dur_mins = random.choice([0, 10, 20, 30, 40, 50])
+        duration_str = f"{dur_hours}h {dur_mins}m"
+        
+        arrival_time = departure_time + datetime.timedelta(hours=dur_hours, minutes=dur_mins)
+        
+        stops = random.choice(['Direct', '1 Stop', '1 Stop', '2 Stops'])
+        price = random.randint(5000, 65000)
+        
+        flight = Flight.objects.create(
+            airline_name=airline,
+            flight_number=flight_num,
+            origin=origin.upper(),
+            destination=destination.upper(),
+            departure_time=departure_time,
+            arrival_time=arrival_time,
+            duration=duration_str,
+            stops=stops,
+            price=price
+        )
+        results.append(flight)
+        
+    return results
+
+def flights(request):
+    origin = request.GET.get('origin', '').strip()
+    destination = request.GET.get('destination', '').strip()
+    departure_date = request.GET.get('departure_date', '')
+    
+    flights_data = []
+    query = False
+    
+    if origin and destination:
+        query = True
+        flights_data = Flight.objects.filter(
+            origin__iexact=origin, 
+            destination__iexact=destination
+        ).order_by('price')
+        
+        if not flights_data.exists():
+            flights_data = mock_flight_api(origin, destination, departure_date)
+            flights_data.sort(key=lambda x: x.price)
+            
+    return render(request, 'flights.html', {
+        'flights': flights_data,
+        'query': query
+    })
+
+def book_flight(request):
+    if request.method == 'POST':
+        # Get data from form
+        passenger_name = request.POST.get('passenger_name')
+        email = request.POST.get('email')
+        phone_number = request.POST.get('phone_number')
+        passengers = request.POST.get('passengers', 1)
+        
+        origin = request.POST.get('origin')
+        destination = request.POST.get('destination')
+        departure_date = request.POST.get('departure_date')
+        return_date = request.POST.get('return_date', None)
+        cabin_class = request.POST.get('cabin_class')
+        
+        seat_preference = request.POST.get('seat_preference', '')
+        special_requests = request.POST.get('special_requests', '')
+        
+        # Save to DB
+        booking = FlightBooking.objects.create(
+            passenger_name=passenger_name,
+            email=email,
+            phone_number=phone_number,
+            passengers=passengers,
+            origin=origin,
+            destination=destination,
+            departure_date=departure_date,
+            return_date=return_date if return_date else None,
+            cabin_class=cabin_class,
+            seat_preference=seat_preference,
+            special_requests=special_requests
+        )
+        
+        # ================================
+        # 1️⃣ Email to ADMIN
+        # ================================
+        admin_subject = f"New Flight Booking from {passenger_name}"
+        admin_message = f"""
+Dear Admin,
+
+A new flight booking has been made. Please review the details below:
+
+Passenger Information:
+--------------------------------------------------
+Name:       {passenger_name}
+Email:      {email}
+Phone:      {phone_number}
+Passengers: {passengers}
+
+Travel Details:
+--------------------------------------------------
+Origin:      {origin}
+Destination: {destination}
+Departure:   {departure_date}
+Return:      {return_date if return_date else 'N/A'}
+Cabin Class: {cabin_class}
+Seat Pref:   {seat_preference}
+Requests:    {special_requests}
+
+Best Regards,
+Merka Automated System
+"""
+        try:
+            send_mail(
+                admin_subject,
+                admin_message,
+                settings.DEFAULT_FROM_EMAIL,
+                ['merkaflight@gmail.com'],
+                fail_silently=False,
+            )
+        except Exception as e:
+            print("Admin email error:", e)
+
+        # ================================
+        # 2️⃣ Auto Reply to USER
+        # ================================
+        user_subject = "Flight Booking Confirmation - Merka SkyWays ✈️"
+        user_message = f"""
+Dear {passenger_name},
+
+Thank you for booking with Merka SkyWays!
+
+We have successfully received your flight booking request from {origin} to {destination}. 
+Our team is currently processing your request and will contact you shortly with your finalized ticket and itinerary.
+
+Booking Summary:
+- Passengers: {passengers}
+- Departure: {departure_date}
+- Cabin: {cabin_class}
+
+If you have any questions, feel free to reply to this email.
+
+Safe travels!
+The Merka SkyWays Team
+"""
+        try:
+            send_mail(
+                user_subject,
+                user_message,
+                settings.DEFAULT_FROM_EMAIL,
+                [email],
+                fail_silently=False,
+            )
+        except Exception as e:
+            print("User email error:", e)
+
+        
+        # We can re-render the flights page with a success flag
+        # For simplicity, pass the required get parameters so the search is preserved if we want, or just return to index
+        return render(request, 'flights.html', {
+            'success': True,
+            'booking': booking
+        })
+        
+    return redirect('flights')

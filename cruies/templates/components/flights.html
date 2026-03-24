@@ -1,0 +1,192 @@
+<section id="flights" class="py-24 bg-gray-50">
+    <div class="w-[80%] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="font-playfair text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                Featured <span class="text-rose-700">Flight Deals</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto font-inter">
+                Explore our best flight deals and discover affordable routes to popular destinations around the world. Book your next journey with comfort and convenience.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Flight Deal 1 -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col">
+                <div class="relative h-64">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Dubai skyline" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-yellow-400 text-gray-900 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase shadow-md">
+                        Popular Route
+                    </div>
+                    <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm font-medium flex items-center space-x-1 shadow-md">
+                        <i class="far fa-clock text-xs"></i><span>4h 10m</span>
+                    </div>
+                </div>
+                <div class="p-8 flex-grow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-playfair text-xl font-bold text-gray-900">Chennai <i class="fas fa-plane text-rose-500 mx-2 text-sm"></i> Dubai</h3>
+                        </div>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600 font-inter">
+                                <i class="fas fa-plane-departure text-rose-700 w-5"></i>
+                                <span class="font-medium text-gray-800">Emirates</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600 font-inter">
+                                <i class="fas fa-route text-rose-700 w-5"></i>
+                                <span>Direct Flight</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-gray-100 flex justify-between items-center">
+                        <div>
+                            <span class="text-xs font-medium text-gray-500 block mb-1">Starting from</span>
+                            <span class="text-2xl font-bold text-rose-700">₹18,499</span>
+                            <span class="text-xs font-medium text-gray-500">/ person</span>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="{% url 'flights' %}" class="w-full bg-rose-700 text-white px-6 py-3.5 rounded-xl hover:bg-rose-800 focus:ring-4 focus:ring-rose-200 transition-all font-semibold shadow-md hover:shadow-lg flex justify-center items-center group text-sm">
+                            View Flights <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flight Deal 2 -->
+             <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col">
+                <div class="relative h-64">
+                    <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Singapore Marina Bay Sands" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-green-500 text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase shadow-md">
+                        Best Deal
+                    </div>
+                    <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm font-medium flex items-center space-x-1 shadow-md">
+                        <i class="far fa-clock text-xs"></i><span>5h 20m</span>
+                    </div>
+                </div>
+                <div class="p-8 flex-grow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-playfair text-xl font-bold text-gray-900">Mumbai <i class="fas fa-plane text-rose-500 mx-2 text-sm"></i> Singapore</h3>
+                        </div>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600 font-inter">
+                                <i class="fas fa-plane-departure text-rose-700 w-5"></i>
+                                <span class="font-medium text-gray-800">Singapore Airlines</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600 font-inter">
+                                <i class="fas fa-route text-rose-700 w-5"></i>
+                                <span>Direct Flight</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-gray-100 flex justify-between items-center">
+                        <div>
+                            <span class="text-xs font-medium text-gray-500 block mb-1">Starting from</span>
+                            <span class="text-2xl font-bold text-rose-700">₹22,999</span>
+                            <span class="text-xs font-medium text-gray-500">/ person</span>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="{% url 'flights' %}" class="w-full bg-rose-700 text-white px-6 py-3.5 rounded-xl hover:bg-rose-800 focus:ring-4 focus:ring-rose-200 transition-all font-semibold shadow-md hover:shadow-lg flex justify-center items-center group text-sm">
+                            View Flights <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flight Deal 3 -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col">
+                <div class="relative h-64">
+                    <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?q=80&w=1000&auto=format&fit=crop" 
+                         alt="London Big Ben" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-purple-500 text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase shadow-md">
+                        Limited Offer
+                    </div>
+                    <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm font-medium flex items-center space-x-1 shadow-md">
+                        <i class="far fa-clock text-xs"></i><span>9h 10m</span>
+                    </div>
+                </div>
+                <div class="p-8 flex-grow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-playfair text-xl font-bold text-gray-900">Delhi <i class="fas fa-plane text-rose-500 mx-2 text-sm"></i> London</h3>
+                        </div>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600 font-inter">
+                                <i class="fas fa-plane-departure text-rose-700 w-5"></i>
+                                <span class="font-medium text-gray-800">Air India</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600 font-inter">
+                                <i class="fas fa-route text-rose-700 w-5"></i>
+                                <span>Direct Flight</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-gray-100 flex justify-between items-center">
+                        <div>
+                            <span class="text-xs font-medium text-gray-500 block mb-1">Starting from</span>
+                            <span class="text-2xl font-bold text-rose-700">₹48,999</span>
+                            <span class="text-xs font-medium text-gray-500">/ person</span>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="{% url 'flights' %}" class="w-full bg-rose-700 text-white px-6 py-3.5 rounded-xl hover:bg-rose-800 focus:ring-4 focus:ring-rose-200 transition-all font-semibold shadow-md hover:shadow-lg flex justify-center items-center group text-sm">
+                            View Flights <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flight Deal 4 -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col">
+                <div class="relative h-64">
+                    <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Bangkok Grand Palace" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-sky-500 text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase shadow-md">
+                        New Route
+                    </div>
+                    <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm font-medium flex items-center space-x-1 shadow-md">
+                        <i class="far fa-clock text-xs"></i><span>4h 30m</span>
+                    </div>
+                </div>
+                <div class="p-8 flex-grow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-playfair text-xl font-bold text-gray-900">Bangalore <i class="fas fa-plane text-rose-500 mx-2 text-sm"></i> Bangkok</h3>
+                        </div>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600 font-inter">
+                                <i class="fas fa-plane-departure text-rose-700 w-5"></i>
+                                <span class="font-medium text-gray-800">Thai Airways</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600 font-inter">
+                                <i class="fas fa-route text-rose-700 w-5"></i>
+                                <span>Direct Flight</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-gray-100 flex justify-between items-center">
+                        <div>
+                            <span class="text-xs font-medium text-gray-500 block mb-1">Starting from</span>
+                            <span class="text-2xl font-bold text-rose-700">₹19,999</span>
+                            <span class="text-xs font-medium text-gray-500">/ person</span>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="{% url 'flights' %}" class="w-full bg-rose-700 text-white px-6 py-3.5 rounded-xl hover:bg-rose-800 focus:ring-4 focus:ring-rose-200 transition-all font-semibold shadow-md hover:shadow-lg flex justify-center items-center group text-sm">
+                            View Flights <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-16">
+            <a href="{% url 'flights' %}" class="inline-block bg-gray-900 text-white px-10 py-4 rounded-full text-lg font-bold hover:bg-gray-800 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                View All Flight Deals <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </div>
+</section>

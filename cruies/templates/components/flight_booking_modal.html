@@ -1,0 +1,155 @@
+<!-- Flight Booking Modal -->
+<div id="flightBookingModal" class="fixed inset-0 hidden flex items-center justify-center z-50 transition-opacity">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeFlightModal()"></div>
+    
+    <div class="bg-white rounded-2xl w-full max-w-3xl mx-4 max-h-[90vh] overflow-y-auto relative z-10 shadow-2xl">
+        <!-- Header -->
+        <div class="bg-gray-900 text-white p-6 rounded-t-2xl flex justify-between items-center sticky top-0 z-20">
+            <div>
+                <h3 class="font-playfair text-2xl font-bold">Complete Your Booking</h3>
+                <p class="text-gray-300 text-sm mt-1">Please fill in the passenger and travel details</p>
+            </div>
+            <button type="button" onclick="closeFlightModal()" class="text-gray-400 hover:text-white transition-colors">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Form -->
+        <form method="post" action="{% url 'book_flight' %}" class="p-6 md:p-8 space-y-8" id="flightBookingForm">
+            {% csrf_token %}
+            
+            <!-- Trip Summary (Read Only details) -->
+            <div class="bg-gray-50 border border-gray-100 rounded-xl p-4 flex flex-col md:flex-row gap-4 justify-between items-center text-sm">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-plane-departure text-rose-600"></i>
+                    <div>
+                        <p class="text-gray-500 font-medium">Origin</p>
+                        <input type="text" name="origin" id="modalOrigin" class="font-bold text-gray-900 bg-transparent border-none p-0 focus:ring-0 cursor-default" readonly>
+                    </div>
+                </div>
+                <div class="hidden md:block w-px h-8 bg-gray-200"></div>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-plane-arrival text-rose-600"></i>
+                    <div>
+                        <p class="text-gray-500 font-medium">Destination</p>
+                        <input type="text" name="destination" id="modalDest" class="font-bold text-gray-900 bg-transparent border-none p-0 focus:ring-0 cursor-default" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passenger Details -->
+            <div>
+                <h4 class="font-bold text-gray-900 text-lg border-b pb-2 mb-4">1. Primary Passenger Details</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Full Name <span class="text-rose-600">*</span></label>
+                        <input type="text" name="passenger_name" required placeholder="As it appears on your ID"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email Address <span class="text-rose-600">*</span></label>
+                        <input type="email" name="email" required placeholder="your@email.com"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number <span class="text-rose-600">*</span></label>
+                        <input type="tel" name="phone_number" required placeholder="+1 234 567 890"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Total Passengers <span class="text-rose-600">*</span></label>
+                        <select name="passengers" id="modalPassengers" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none transition-all bg-white cursor-pointer">
+                            <option value="1">1 Passenger</option>
+                            <option value="2">2 Passengers</option>
+                            <option value="3">3 Passengers</option>
+                            <option value="4">4 Passengers</option>
+                            <option value="5">5+ Passengers</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Travel Preferences -->
+            <div>
+                <h4 class="font-bold text-gray-900 text-lg border-b pb-2 mb-4">2. Travel Preferences</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Departure Date <span class="text-rose-600">*</span></label>
+                        <input type="date" name="departure_date" id="modalDepDate" required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none transition-all text-gray-700">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Return Date (Optional)</label>
+                        <input type="date" name="return_date"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none transition-all text-gray-700">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Cabin Class <span class="text-rose-600">*</span></label>
+                        <select name="cabin_class" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none transition-all bg-white cursor-pointer">
+                            <option value="Economy">Economy</option>
+                            <option value="Premium Economy">Premium Economy</option>
+                            <option value="Business">Business Class</option>
+                            <option value="First">First Class</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Seat Preference</label>
+                        <select name="seat_preference" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none transition-all bg-white cursor-pointer">
+                            <option value="Any">Any Seat</option>
+                            <option value="Window">Window</option>
+                            <option value="Aisle">Aisle</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Special Requests -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Special Requests</label>
+                <textarea name="special_requests" rows="3" placeholder="Dietary requirements, wheelchair access, etc."
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none transition-all resize-none"></textarea>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col-reverse sm:flex-row justify-end gap-4 pt-6 border-t">
+                <button type="button" onclick="closeFlightModal()"
+                    class="px-8 py-3.5 text-gray-700 font-bold border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors w-full sm:w-auto">
+                    Cancel
+                </button>
+                <button type="submit" id="confirmBookingBtn"
+                    class="px-8 py-3.5 bg-rose-600 text-white font-bold rounded-xl hover:bg-rose-700 shadow-lg shadow-rose-600/30 transition-all w-full sm:w-auto flex items-center justify-center gap-2">
+                    Confirm Booking <i class="fas fa-check-circle"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openFlightModal(origin, destination, departure_date, passengers) {
+        // Pre-fill fields
+        document.getElementById('modalOrigin').value = origin;
+        document.getElementById('modalDest').value = destination;
+        
+        if (departure_date) document.getElementById('modalDepDate').value = departure_date;
+        if (passengers) document.getElementById('modalPassengers').value = passengers.replace('+','');
+        
+        // Show modal
+        const modal = document.getElementById('flightBookingModal');
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeFlightModal() {
+        const modal = document.getElementById('flightBookingModal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Optional: Add loading state to button when form is submitted
+    document.getElementById('flightBookingForm').addEventListener('submit', function() {
+        const btn = document.getElementById('confirmBookingBtn');
+        btn.innerHTML = 'Processing... <i class="fas fa-spinner fa-spin"></i>';
+        btn.classList.add('opacity-75', 'cursor-not-allowed');
+    });
+</script>

@@ -34,23 +34,7 @@ function toggleMobileMenu() {
     mobileMenu.classList.toggle('hidden');
 }
 
-// Booking modal functions
-function openBookingModal() {
-    document.getElementById('bookingModal').classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-}
 
-function closeBookingModal() {
-    document.getElementById('bookingModal').classList.add('hidden');
-    document.body.style.overflow = 'auto';
-}
-
-// Form submission handlers
-function submitBooking(event) {
-    event.preventDefault();
-    alert('Thank you for your booking request! Our travel consultants will contact you within 24 hours to confirm your reservation.');
-    closeBookingModal();
-}
 
 function submitContactForm(event) {
     event.preventDefault();
@@ -129,13 +113,6 @@ const observer = new IntersectionObserver(function (entries) {
 // Observe elements for animation
 document.querySelectorAll('.cruise-card, .destination-card, .testimonial-card').forEach(el => {
     observer.observe(el);
-});
-
-// Close modal when clicking outside
-document.getElementById('bookingModal').addEventListener('click', function (e) {
-    if (e.target === this) {
-        closeBookingModal();
-    }
 });
 
 // Initialize animations on page load
